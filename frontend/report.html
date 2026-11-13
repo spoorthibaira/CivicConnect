@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Issue - CivicConnect</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>CivicConnect</h2>
+        <div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout" class="nav-button">Logout</a>
+        </div>
+    </nav>
+
+    <section class="features">
+        <h2>Report a Community Issue</h2>
+
+        <form action="/report" method="POST" enctype="multipart/form-data" class="form-container">
+
+            <input type="text" name="title" placeholder="Issue Title" required>
+
+            <select name="category" required>
+                <option value="">Select Issue Category</option>
+                <option value="Road Damage">Road Damage</option>
+                <option value="Garbage">Garbage</option>
+                <option value="Water Leakage">Water Leakage</option>
+                <option value="Streetlight">Streetlight Problem</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <textarea name="description" placeholder="Describe the problem" rows="5" required></textarea>
+
+            <input type="text" name="location" placeholder="Enter Issue Location" required>
+
+            <label>Upload an Image (Optional)</label>
+            <input type="file" name="image" accept="image/*">
+
+            <button type="submit" class="primary-button">Submit Complaint</button>
+
+        </form>
+    </section>
+
+</body>
+</html>

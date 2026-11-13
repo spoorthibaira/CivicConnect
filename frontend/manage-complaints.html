@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Complaints - CivicConnect</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2>CivicConnect Admin</h2>
+        <div>
+            <a href="/admin-dashboard">Dashboard</a>
+            <a href="/admin-logout">Logout</a>
+        </div>
+    </nav>
+
+    <section class="features">
+        <h2>Manage Citizen Complaints</h2>
+
+        {% if complaints %}
+            <div class="feature-container">
+                {% for complaint in complaints %}
+                    <div class="feature-card">
+                        <h3>{{ complaint.title }}</h3>
+                        <p><strong>Citizen:</strong> {{ complaint.citizen_name }}</p>
+                        <p><strong>Email:</strong> {{ complaint.citizen_email }}</p>
+                        <p><strong>Category:</strong> {{ complaint.category }}</p>
+                        <p><strong>Description:</strong> {{ complaint.description }}</p>
+                        <p><strong>Location:</strong> {{ complaint.location }}</p>
+                        <p><strong>Status:</strong> {{ complaint.status }}</p>
+
+                        <form action="/update-status/{{ complaint.id }}" method="POST">
+                            <label>Update Status:</label>
+                            <select name="status">
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                            <button type="submit">Update Status</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No complaints have been submitted yet.</p>
+        {% endif %}
+    </section>
+
+</body>
+</html>
